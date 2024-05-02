@@ -1,0 +1,74 @@
+.form-input {
+  width: 100%;
+}
+.form-input .q-field__bottom {
+    margin-bottom: 0.2rem;
+}
+.toggle-choice .q-toggle__thumb {
+  color: white;
+}
+.toggle-choice i {
+  color: green !important;
+  opacity: 1 !important;
+}
+.q-uploader__file {
+  background-size: contain;
+}
+.icionrecycle-nom {
+  font-variant: small-caps;
+}
+.q-table thead tr th {
+  position: sticky;
+  z-index: 1;
+}
+.q-table thead tr:first-child th {
+  top: 0
+}
+.q-table thead tr:first-child th {
+  background-color: white;
+}
+.pointeronly, .pointeronly * {
+    cursor: pointer !important;
+}
+
+.q-table thead tr th {
+  text-align: center;
+}
+
+.q-date__event {
+  height: 10px;
+  width: 10px;
+  opacity: 0.7;
+  background-color: var(--q-positive);
+  bottom: 0px;
+}
+.text-h6 {
+  font-size: 1.75em;
+}
+.aide-tooltip{
+  font-size: 0.85em
+}
+.aide {
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  cursor: help;
+  font-style: italic;
+}
+.q-select .q-field__label {
+  color: black;
+  font-weight: larger;
+}
+.triethiccomp.triethic-input .q-field__append {
+  position: absolute;
+  right: 0;
+  background-color: #f2f2f2;
+}
+/*
+https://cdn.jsdelivr.net/npm/quasar@1.15.20/dist/quasar.min.css
+
+
+
+.q-field__control height: 56px;
+.q-field__bottom min-height: 20px;
+
+*/

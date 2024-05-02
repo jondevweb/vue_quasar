@@ -1,0 +1,29 @@
+[2024-04-16 16:45:42] production.ERROR: Command "cache" is not defined.
+
+Did you mean one of these?
+    cache:clear
+    cache:forget
+    cache:table
+    config:cache
+    event:cache
+    permission:cache-reset
+    route:cache
+    view:cache {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"cache\" is not defined.
+
+Did you mean one of these?
+    cache:clear
+    cache:forget
+    cache:table
+    config:cache
+    event:cache
+    permission:cache-reset
+    route:cache
+    view:cache at /var/www/html/triethic.icionrecycle.fr/root/vendor/symfony/console/Application.php:682)
+[stacktrace]
+#0 /var/www/html/triethic.icionrecycle.fr/root/vendor/symfony/console/Application.php(255): Symfony\\Component\\Console\\Application->find()
+#1 /var/www/html/triethic.icionrecycle.fr/root/vendor/symfony/console/Application.php(167): Symfony\\Component\\Console\\Application->doRun()
+#2 /var/www/html/triethic.icionrecycle.fr/root/vendor/laravel/framework/src/Illuminate/Console/Application.php(92): Symfony\\Component\\Console\\Application->run()
+#3 /var/www/html/triethic.icionrecycle.fr/root/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#4 /var/www/html/triethic.icionrecycle.fr/root/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()
+#5 {main}
+"} 

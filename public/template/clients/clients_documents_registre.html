@@ -1,0 +1,62 @@
+<style>
+    .sticky-header-table {
+        height: 50vh;
+    }
+</style>
+<div id='TOTORO' class="q-pa-md fit column wrap justify-start  content-stretch">
+    <div class='text-h5 text-primary'>Registre de suivi de déchets</div>
+    <q-card class="my-card">
+        <!-- Si besoin : https://quasar.dev/vue-components/table#virtual-scrolling -->
+        <q-card-section>
+            <q-table
+                title=""
+                :rows="rsds.rows"
+                :columns="rsds.columns"
+                style="max-height: 70vh;"
+                :pagination="rsds.pagination"
+                row-key="id"
+                :visible-columns="rsds.visibleColumns"
+            >
+                <template v-slot:top="props">
+                    <div class="q-table__title">Colonnes :</div>
+                    <div class="col-6" style='max-width: 30em;width: 30em;'>
+                        <div class='q-pa-md'>
+                            <div class="row">
+                                <div class="col">
+                                    <q-toggle v-model="rsds.visibleColumns" val="code_dechet"                              label="Code du déchet">    </q-toggle>
+                                </div>
+                                <div class="col">
+                                    <q-toggle v-model="rsds.visibleColumns" val="numero_bsd"                               label="N° BSD">            </q-toggle>
+                                </div>
+                                <div class="col">
+                                    <q-toggle v-model="rsds.visibleColumns" val="nom_adresse_transporteur"                 label="Transporteur">      </q-toggle>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <q-toggle v-model="rsds.visibleColumns" val="transporteur_entree_recepisse"            label="Récépissé">         </q-toggle>
+                                </div>
+                                <div class="col">
+                                    <q-toggle v-model="rsds.visibleColumns" val="nom_adresse_destination"                  label="Destination">       </q-toggle>
+                                </div>
+                                <div class="col">
+                                    <q-toggle v-model="rsds.visibleColumns" val="destination_regroupement_code_traitement" label="Code du traitement"></q-toggle>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <q-space></q-space>
+                    <q-btn
+                        flat round dense
+                        :icon="props.inFullscreen ? 'fullscreen_exit' : 'fullscreen'"
+                        @click="props.toggleFullscreen"
+                        class="q-ml-md"
+                    ></q-btn>
+                </template>
+            </q-table>
+        </q-card-section>
+        <q-card-section>
+            <q-btn color='primary' label="Exporter vos données" @click='downloadCsv'></q-btn>
+        </q-card-section>
+      </q-card>
+</div>

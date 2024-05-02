@@ -1,0 +1,179 @@
+<style>
+  .sticky-header-table {
+      height: 40vh;
+  }
+  table * {
+    overflow:hidden;
+    text-overflow: ellipsis;
+  }
+  .penible {
+    display: inline-block;
+  }
+  .tablecol1 {
+    width: 5%;
+  }
+  .tablecol2 {
+    width: 30%;
+  }
+  .tablecol3 {
+    width: 20%;
+  }
+  .tablecol4 {
+    width: 40%;
+  }
+
+</style>
+<div id='TOTORO' class="">
+  <div class="q-pa-md fit column wrap justify-start  content-stretch">
+    <div class='text-h5 text-primary fit row no-wrap justify-start items-start content-center' style='margin-bottom: 1rem;'>
+      <div style='white-space: nowrap;'>Gestion des attestations annuels</div>&nbsp;&nbsp;&nbsp;
+    </div>
+    <q-card style='text-align: center;'>
+      <q-card-section>
+        <q-table
+            title="Attestations par année"
+            :rows="generations.rows"
+            :columns="generations.columns"
+            row-key="annee"
+            ref='generations'
+            :filter="generations.filter"
+            v-model:pagination="generations.pagination"
+            class="sticky-header-table"
+        >
+          <template v-slot:header="props">
+              <q-tr :props="props">
+                <template v-for="col in props.cols" :key="col.name" :props="props">
+                    <q-th v-if='col.required == true'>
+                    {{ col.label }}
+                    </q-th>
+                </template>
+                <q-th auto-width></q-th>
+              </q-tr>
+          </template>
+          <template v-slot:body="props">
+            <q-tr :props="props">
+              <q-td key="annee" :props="props">
+                  {{ props.row.annee }}
+              </q-td>
+              <q-td key="text" :props="props">
+                  {{ props.row.text }}
+              </q-td>
+              <q-td>
+                <q-btn color="primary" @click="generationAttestations(props)" icon="fa-solid fa-arrow-rotate-right"></q-btn>
+              </q-td>
+            </q-tr>
+          </template>
+        </q-table>
+        <q-inner-loading :showing="blockUi">
+          <q-spinner-gears size="3em" color="primary"></q-spinner-gears>
+          {{blockUiMessage}}
+        </q-inner-loading>
+      </q-card-section>
+      <q-card-section>
+          <q-table
+              title="Attestations par point de collecte"
+              :rows="pointcollectes.rows"
+              :columns="pointcollectes.columns"
+              row-key="id"
+              ref='pointcollectes'
+              :filter="pointcollectes.filter"
+              v-model:pagination="pointcollectes.pagination"
+          >
+              <template v-slot:top-right="props">
+                  Lignes par page :&nbsp;
+                  <q-select borderless v-model="pointcollectes.pagination.rowsPerPage"
+                      emit-value
+                      :options="[{value: 10, label: '10'}, {value: 20, label: '20'}, {value: 50, label: '50'}, {value: 99999, label: 'Toutes'}, ]"
+                          map-options
+                  >
+                  </q-select>
+                  <q-pagination v-if='pointcollectes.rows.length'
+                      v-model="pointcollectes.pagination.page"
+                      :max='Math.ceil(pointcollectes.rows.length/pointcollectes.pagination.rowsPerPage)'
+                      input
+                  ></q-pagination>
+              </template>
+              <template v-slot:top-left>
+                <div class="q-table__title" style="text-align: left;">Attestations par point de collecte</div>
+                <q-input dense debounce="300" v-model="pointcollectes.filter" placeholder="Recherche">
+                  <template v-slot:append>
+                    <q-icon name="search"></q-icon>
+                  </template>
+                </q-input>
+              </template>
+              <template v-slot:header="props">
+                <q-tr :props="props">
+                  <q-th  class="tablecol1 penible">&nbsp;</q-th>
+                  <template v-for="col in props.cols" :key="col.name" :props="props">
+                      <q-th  v-if='col.required == true' :class="'penible '+col.class">
+                      {{ col.label }}
+                      </q-th>
+                  </template>
+                </q-tr>
+              </template>
+              <template v-slot:body="props">
+                  <q-tr :props="props">
+                      <q-td class="tablecol1 penible">
+                        <q-btn size="sm" color="accent" round dense @click="pointcollecteClick(props)" :icon="props.expand ? 'remove' : 'add'"></q-btn>
+                      </q-td>
+                      <q-td key="nom" :props="props" class="tablecol2 penible" :title="props.row.nom">
+                          {{ props.row.nom }}
+                      </q-td>
+                      <q-td key="annees" :props="props" class="tablecol3 penible" :title="props.row.annees">
+                          {{ props.row.annees }}
+                      </q-td>
+                      <q-td key="adresse" :props="props" class="tablecol4 penible" :title="props.row.adresse">
+                          {{ props.row.adresse }}
+                      </q-td>
+                  </q-tr>
+                  <q-tr v-show="props.expand" :props="props">
+                    <q-td colspan="100%">
+                      <q-card style='text-align: center;'>
+                        <q-card-section>
+                          <q-table
+                            title=""
+                            :rows="attestations.rows"
+                            :columns="attestations.columns"
+                            row-key="id"
+                            ref='attestations'
+                          >
+                            <template v-slot:header="props">
+                                <q-tr :props="props">
+                                  <template v-for="col in props.cols" :key="col.name" :props="props">
+                                      <q-th v-if='col.required == true'>
+                                      {{ col.label }}
+                                      </q-th>
+                                  </template>
+                                  <q-th auto-width></q-th>
+                                </q-tr>
+                            </template>
+                            <template v-slot:body="props">
+                              <q-tr :props="props">
+                                <q-td key="annee" :props="props">
+                                    {{ props.row.annee }}
+                                </q-td>
+                                <q-td key="document" :props="props">
+                                  <q-btn v-if="props.row.collectes_presentes > 0 && props.row.annee" size="sm" @click="downloadAttestation(props)" icon="fa-solid fa-download"></q-btn>
+                                  <span v-if="props.row.collectes_presentes > 0 && props.row.annee == null">Génération à réaliser !</span>
+                                </q-td>
+                                <q-td>
+                                  <q-btn color="primary" @click="generationAttestation(props)" icon="fa-solid fa-arrow-rotate-right"></q-btn>
+                                </q-td>
+                              </q-tr>
+                            </template>
+                          </q-table>
+                        </q-card-section>
+                      </q-card>
+                    </q-td>
+                  </q-tr>
+              </template>
+          </q-table>
+
+          <q-inner-loading :showing="blockUi">
+            <q-spinner-gears size="3em" color="primary"></q-spinner-gears>
+            {{blockUiMessage}}
+          </q-inner-loading>
+      </q-card-section>
+    </q-card>
+  </div>
+</div>

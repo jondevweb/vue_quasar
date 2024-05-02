@@ -1,0 +1,59 @@
+<style>
+    .documentlien {
+        font-weight: bold;
+        font-size: larger;
+    }
+    .tooltipwrapper {
+        display: inline;
+    }
+    .sticky-header-table {
+        /*height: 75vh;*/
+    }
+</style>
+<div id='TOTORO' class="q-pa-md fit column wrap justify-start  content-stretch">
+    <div class='text-h5 text-primary'>Attestation de valorisation</div>
+    <q-card style='text-align: center;'>
+        <q-card-section>
+            <q-table
+                title=""
+                :rows="attestations.rows"
+                :columns="attestations.columns"
+                selection="multiple"
+                v-model:selected="attestations.selected"
+                class="sticky-header-table"
+                :pagination="attestations.pagination"
+                row-key="id"
+            >
+                <template v-slot:header="props">
+                <q-tr :props="props">
+                    <q-th auto-width>
+                        <q-checkbox :indeterminate-value="null" v-model="props.selected"></q-checkbox>
+                    </q-th>
+                    <template v-for="col in props.cols" :key="col.name" :props="props">
+                        <q-th v-if='col.required == true' :key="col.name" :props="props">
+                            {{ col.label }}
+                        </q-th>
+                    </template>
+                    <q-th auto-width></q-th>
+                </q-tr>
+                </template>
+                <template v-slot:body="props">
+                    <q-tr :props="props">
+                        <q-td auto-width>
+                            <q-checkbox v-model="props.selected"></q-checkbox>
+                        </q-td>
+                        <q-td key="annee" :props="props">
+                            {{ props.row.annee }}
+                        </q-td>
+                        <q-td auto-width>
+                            <q-btn size="sm" icon="fas fa-download" @click='documentDownload(props.row.id)'></q-btn>
+                        </q-td>
+                    </q-tr>
+                </template>
+            </q-table>
+        </q-card-section>
+        <q-card-section style='text-align: left;'>
+            <q-btn color='primary' :disable='attestations.selected.length == 0' label="Exporter la selection" @click='downloadSelected'></q-btn>
+        </q-card-section>
+      </q-card>
+</div>

@@ -1,0 +1,41 @@
+<style>
+    .sticky-header-table {
+        height: 50vh;
+    }
+</style>
+<div id='TOTORO' class="q-pa-md fit column wrap justify-start items-start content-start">
+    <div class='text-h5 text-primary fit row no-wrap justify-start items-start content-center' style='margin-bottom: 1rem;'><div style='white-space: nowrap;'>Informations générales</div>&nbsp;&nbsp;&nbsp;
+    </div>
+    <div class='q-gutter-md fit row wrap justify-start items-stretch content-start'>
+        <q-card style='min-width: 35em;'>
+            <q-card-section>
+                <div class="text-h6">Établissement principal</div>
+            </q-card-section>
+            <q-card-section>
+                <business-societe readonly v-model='client.model' type='client'></business-societe>
+            </q-card-section>
+        </q-card>
+        <q-card style='min-width: 30em;'>
+            <q-card-section>
+                <div class="text-h6">Contact juridique</div>
+            </q-card-section>
+            <q-card-section>
+                <business-contact v-model='contact_juridique.model' view-type='clientlight'></business-contact>
+            </q-card-section>
+        </q-card>
+    </div>
+    <div class='q-gutter-md fit row wrap justify-start items-stretch content-start' style='margin-top: 1rem' v-if='gestionnaire.model.id'>
+        <q-card>
+            <q-card-section>
+                <div class="text-h6">Gestionnaire</div>
+            </q-card-section>
+            <q-card-section horizontal class='toto'>
+                <q-card-section style='min-width: 35em;'>
+                    <business-societe readonly v-model='gestionnaire.model' type='client'></business-societe>
+                </q-card-section>
+                <q-separator vertical></q-separator>
+                <business-contact v-model='contact_gestionnaire.model' view-type='clientlight'></business-contact>
+            </q-card-section>
+        </q-card>
+    </div>
+</div>

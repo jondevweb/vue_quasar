@@ -1,0 +1,9 @@
+[2024-04-24 12:22:15] production.ERROR: There are no commands defined in the "inertia" namespace. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\NamespaceNotFoundException(code: 0): There are no commands defined in the \"inertia\" namespace. at /var/www/html/triethic.icionrecycle.fr/root/vendor/symfony/console/Application.php:638)
+[stacktrace]
+#0 /var/www/html/triethic.icionrecycle.fr/root/vendor/symfony/console/Application.php(687): Symfony\\Component\\Console\\Application->findNamespace()
+#1 /var/www/html/triethic.icionrecycle.fr/root/vendor/symfony/console/Application.php(260): Symfony\\Component\\Console\\Application->find()
+#2 /var/www/html/triethic.icionrecycle.fr/root/vendor/symfony/console/Application.php(169): Symfony\\Component\\Console\\Application->doRun()
+#3 /var/www/html/triethic.icionrecycle.fr/root/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Symfony\\Component\\Console\\Application->run()
+#4 /var/www/html/triethic.icionrecycle.fr/root/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
+#5 {main}
+"} 

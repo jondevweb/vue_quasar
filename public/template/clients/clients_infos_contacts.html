@@ -1,0 +1,14 @@
+<style>
+    .sticky-header-table {
+        height: 50vh;
+    }
+</style>
+<div id='TOTORO' class="q-pa-md fit column wrap justify-start items-start content-start">
+    <div class='text-h5 text-primary fit row no-wrap justify-start items-start content-center' style='margin-bottom: 1rem;'><div style='white-space: nowrap;'>Contacts associés</div>&nbsp;&nbsp;&nbsp;
+    </div>
+    <div class='q-gutter-md fit row wrap justify-start items-stretch content-start'>
+        <template v-for="(value, name, index) in contacts">
+            <business-contact v-model='value' view-type='client' style='min-width: 25em;'></business-contact>
+        </template>
+    </div>
+</div>

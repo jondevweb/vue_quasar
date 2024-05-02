@@ -1,0 +1,97 @@
+<style>
+    .passage-passe, .passage-futur {
+        height: 24em;
+        min-width: 15em;
+    }
+</style>
+<div id='TOTORO' class="">
+    <div class="q-pa-md fit column wrap justify-start  content-stretch">
+        <div class='text-h5 text-primary'>Calendrier de collectes</div>
+        <q-card style='text-align: center;'>
+            <q-card-section class="fit row wrap justify-around items-center content-start">
+                <fieldset class="passage-passe scroll">
+                    <legend>Derniers passages</legend>
+                    <q-list separator>
+                        <template v-for="day in passageDays.rows">
+                            <q-item clickable v-ripple @click="dayOfTheWeek = day.calendarFormat" :active="dayOfTheWeek == day.calendarFormat">
+                                <q-item-section>{{day.formated}}</q-item-section>
+                            </q-item>
+                        </template>
+                      </q-list>
+                </fieldset>
+                <q-date v-model="dayOfTheWeek" :title="calendarTitle" :events="calendar.events" no-unset @navigation='loadCalendarData'></q-date>
+                <fieldset class="passage-futur scroll">
+                    <legend>Prochains passages</legend>
+                    <q-list separator  style="height: 100%">
+                        <template v-if='futurPassageDays.rows.length > 0'>
+                            <template v-if='futurPassageDays.rows.length > 0' v-for="day in futurPassageDays.rows">
+                                <q-item v-ripple @click="dayOfTheWeek = day.calendarFormat" :active="dayOfTheWeek == day.calendarFormat">
+                                    <q-item-section>{{day.formated}}</q-item-section>
+                                </q-item>
+                            </template>
+                            <q-item >
+                                <q-item-section>Vue limitée à 10 passages</q-item-section>
+                            </q-item>
+                        </template>
+                        <template v-else>
+                            <div style="display: flex;align-items: center;height: 75%;">Aucun passage n'est planifié<br>
+                            pour<br>
+                            les 12 prochains mois</div>
+                        </template>
+                    </q-list>
+                </fieldset>
+            </q-card-section>
+            <q-card-section>
+                <q-table
+                    title=""
+                    :rows="collectes.rows"
+                    :columns="collectes.columns"
+                >
+                    <template v-slot:pagination="props"></template>
+                    <template v-slot:bottom="props"></template>
+                    <template v-slot:top-right="props">
+                        Lignes par page :&nbsp;
+                        <q-select borderless v-model="props.pagination.rowsPerPage"
+                                emit-value
+                                map-options
+                                :options="[{value: 5, label: '5'}, {value: 10, label: '10'}, {value: 20, label: '20'}, {value: 99999, label: 'Toutes'}, ]"
+                        >
+                        </q-select>
+                        <q-pagination v-if='collectes.rows.length'
+                            v-model="props.pagination.page"
+                            :max='Math.ceil(collectes.rows.length/props.pagination.rowsPerPage)'
+                            input
+                        ></q-pagination>
+                    </template>
+                    <template v-slot:body="props">
+                        <q-tr :props="props">
+                            <q-td key="date" :props="props">
+                                {{ $filters.date.mysqlToDate(props.row.date) }}
+                            </q-td>
+                            <q-td key="nom" :props="props">
+                                {{ props.row.nom }}
+                            </q-td>
+                            <q-td key="statut" :props="props">
+                                {{ statutToString(props.row.statut, props.row.isPast) }}
+                            </q-td>
+                            <q-td key="dechets" :props="props">
+                                {{ props.row.dechets }}
+                            </q-td>
+                            <q-td key="poids" :props="props">
+                                {{ props.row.poids }}
+                            </q-td>
+                        </q-tr>
+                    </template>
+                    <template v-slot:no-data="">
+                        <div class="full-width row wrap justify-start items-center content-start">
+                            <i class="fas fa-exclamation-triangle"></i>&nbsp;Aucune donnée pour le jour sélectionné
+                        </div>
+                    </template>
+                </q-table>
+            </q-card-section>
+            <q-card-section class='text-left'>
+                <q-btn color='primary' label="Exporter les dates de collectes à venir" @click='downloadCsv'></q-btn>
+            </q-card-section>
+        </q-card>
+    </div>
+</div>

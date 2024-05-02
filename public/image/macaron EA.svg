@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 104.6 104.7"
+   style="enable-background:new 0 0 104.6 104.7;"
+   xml:space="preserve"
+   id="svg21"
+   sodipodi:docname="macaron EA.svg"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15)"><metadata
+   id="metadata27"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+   id="defs25" /><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1920"
+   inkscape:window-height="1051"
+   id="namedview23"
+   showgrid="false"
+   inkscape:zoom="6.8290355"
+   inkscape:cx="35.386923"
+   inkscape:cy="52.349998"
+   inkscape:window-x="0"
+   inkscape:window-y="0"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Calque_2" />
+<style
+   type="text/css"
+   id="style2">
+	.st0{fill:none;stroke:#010202;stroke-width:2;stroke-miterlimit:10;}
+	.st1{fill:none;}
+	.st2{fill:#010202;}
+	.st3{font-family:'Montserrat-Regular';}
+	.st4{font-size:15px;}
+	.st5{font-size:5px;}
+</style>
+<g
+   id="Calque_2"><text
+   id="text14"
+   transform="translate(13.0086,44.7651)"
+   style="stroke:none;stroke-opacity:1;fill:#ffffff;fill-opacity:1;"><tspan
+     x="0"
+     y="0"
+     class="st2 st3 st4"
+     id="tspan10"
+     style="stroke:none;stroke-opacity:1;fill:#ffffff;fill-opacity:1;">Entreprise </tspan><tspan
+     x="6.9000001"
+     y="15"
+     class="st2 st3 st4"
+     id="tspan12"
+     style="stroke:none;stroke-opacity:1;fill:#ffffff;fill-opacity:1;">Adaptée</tspan></text>
+	<circle
+   class="st0"
+   cx="52.299999"
+   cy="52.400002"
+   r="51.099998"
+   id="circle4"
+   style="stroke:#ffffff;stroke-opacity:1" /><text
+   transform="translate(19.6358,72.1281)"
+   class="st2 st3 st5"
+   id="text18"
+   style="fill:#ffffff;fill-opacity:1;">N° Agrément 18 11 092 010</text>
+</g>
+
+
+</svg>

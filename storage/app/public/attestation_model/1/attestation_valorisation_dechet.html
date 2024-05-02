@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World! Site Title</title>
+    <link rel="stylesheet" href="./ressources/bootstrap-reboot.min.css"></link>
+    <script src="./ressources/vue.min.js"></script>
+    <script src="./data.js"></script>
+    <style>
+      .box-mc-col {
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-align-content: stretch;
+        -ms-flex-line-pack: stretch;
+        align-content: stretch;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+      .box-tc-col {
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        -webkit-align-content: stretch;
+        -ms-flex-line-pack: stretch;
+        align-content: stretch;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+      .box-mc-row {
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-align-content: stretch;
+        -ms-flex-line-pack: stretch;
+        align-content: stretch;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+      .box-ml-row {
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        -webkit-align-content: stretch;
+        -ms-flex-line-pack: stretch;
+        align-content: stretch;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+      .box-ml-col {
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-align-content: stretch;
+        -ms-flex-line-pack: stretch;
+        align-content: stretch;
+        -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+      }
+      .box-tl-row {
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        -webkit-align-content: stretch;
+        -ms-flex-line-pack: stretch;
+        align-content: stretch;
+      }
+      .box-item-fill {
+        /*-webkit-order: 0;
+        -ms-flex-order: 0;
+        order: 0;
+        -webkit-flex: 1 1 auto;
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        -webkit-align-self: auto;
+        -ms-flex-item-align: auto;
+        align-self: auto;
+        flex-basis: min-content;*/
+        flex: 1;
+      }
+      @page {
+        size: A4;
+        margin: 0;
+      }
+      /*@media print {
+        html, body {
+          width: 210mm;
+          height: 297mm;
+        }
+        .page {page-break-after: always;}
+      }*/
+      /*body, html {
+        height: 100%;
+        width: 100%;
+      }*/
+      body {
+        font-size:9.7pt;
+        font-family: arial;
+      }
+      .page {
+        border: solid;
+        border-width: 0.09rem;
+        width: 200mm;
+        height: 287mm;
+        page-break-after: always;
+        margin: 1rem;
+        /*height: 90vh;
+        width: 90vw;*/
+      }
+      .page-date-number {
+        width: 100%;
+      }
+      .page-date-number > div:nth-child(1){
+        text-align: left;
+      }
+      .box {
+        width: 1.1rem;
+        min-width: 1.1rem;
+        height: 1.1rem;
+        min-height: 1.1rem;
+        border: solid;
+        border-width: 0.1rem;
+        margin-right: 0.5rem;
+      }
+      .bracket, .reversed-bracket{
+        border-style: none;
+        height: 3rem;
+        width: 0.75rem;
+      }
+      .reversed-bracket {
+         transform: scaleX(-1);
+      }
+      .item-number {
+        margin-right: 1.01rem;
+        /*width: 1.3rem;*/
+        text-align: left;
+      }
+      .waste-text {
+        width: 10rem;
+      }
+      .waste-cell {
+        width: 1rem;
+      }
+      .qtty-type {
+        width: 12rem;
+      }
+      .qtty-type.aggregate {
+        width: 11.25rem;
+      }
+      .qtty-separator {
+        margin-left: 0.5rem;
+      }
+      .qtty-weight {
+        width: 5rem;
+        text-align: center;
+        margin-right: 3rem;
+      }
+      .qtty-item-separator {
+        height: 0.24rem;
+        margin-top: 0.25rem;
+        border-top: solid;
+        width: calc(100% - 5.1rem);
+        left: 1.5rem;
+        position: relative;
+        border-top-width: 0.1rem;
+      }
+      #destination table, #destination td, #destination th {
+        border: 0.01rem solid black;
+        height: 1rem;
+      }
+      #destination table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      #destination th {
+        height: 1.5rem;
+        text-align: center;
+      }
+      #destination tr {
+        text-align: center;
+      }
+      #destination .rowheader {
+        font-weight: bold;
+      }
+      .section-header, .page-date-number {
+        background-color: #dedddd;
+        color:#484d53;
+        font-weight: bold;
+
+        border-bottom: solid;
+        border-bottom-width: medium;
+        border-bottom-width: 0.09rem;
+
+        border-top: solid;
+        border-top-width: medium;
+        border-top-width: 0.09rem;
+
+        margin-top: 0.25rem;
+        padding-left: 0.25rem;
+      }
+      .section-content, .page-title {
+        margin: 0.25rem;
+        margin-bottom: 0.5rem;
+      }
+      .page-date-number {
+        background-color: inherit;
+      }
+      .page-date-number > div:nth-child(1) {
+        border-right: solid;
+        border-right-width: 0.09rem;
+      }
+      .page-date-number > div:nth-child(2) {
+        padding-left: 0.25rem;
+      }
+      .text-nobreak {
+        white-space: nowrap;
+      }
+      .from {
+        margin-top: 0;
+        border-top: none;
+      }
+    </style>
+  </head>
+  <body class='box-mc-col'>
+    <main id='app'>
+      <div class="page" v-for="(value, name, index) in recapData.id_type_dechet">
+        <div class="page-header box-tc-col">
+          <div class="page-title box-tc-col">
+            <div class='box-tc-col'><strong style='text-align: center;'>Attestation de valorisation de déchets de papier/carton, métal, plastique, verre et bois prévue par l'article D.543-284 du code de l'environnement</strong></div>
+            <em>(Modèle défini par l'arrêté du 18-07-2018 publié au J.O.R.F. n°0173)</em>
+            <em>(d'après source https://www.legifrance.gouv.fr/jo_pdf.do?id=JORFTEXT000037257710 au 14/01/19)</em>
+          </div>
+          <div class="page-date-number box-mc-row">
+            <div class="box-item-fill">
+              Attestation n°{{recapData.commun.numero_attestation}}-{{value.dechet_id}}
+            </div>
+            <div class="box-item-fill">
+              Année : {{recapData.commun.annee}}
+            </div>
+          </div>
+        </div>
+        <div class="section-header box-ml-row from">
+          1. Émetteur de l'attestation
+        </div>
+        <div class="section-content box-tl-row">
+          <div class="box-item-fill">
+            <div class='box-ml-row'>Nom : {{recapData.commun.integrateur}}</div>
+            <div class='box-ml-row'>Adresse : {{recapData.commun.integrateur_adresse}}</div>
+            <div class='box-ml-row'>N° SIRET : {{recapData.commun.integrateur_SIRET}}</div>
+            <div class='box-ml-row'>Tél : {{recapData.commun.integrateur_telephone}}</div>
+            <div class='box-ml-row'>Mél ou Fax : {{recapData.commun.integrateur_email}}</div>
+            <div class='box-ml-row'>Personne à contacter : {{recapData.commun.integrateur_personne_contact}}</div>
+          </div>
+          <div class="box-item-fill">
+            <div class='box-ml-row'><div class='box box-mc-row'>&nbsp;</div>Exploitant d'une installation de valorisation</div>
+            <div class='box-ml-row'>OU</div>
+            <div class='box-ml-row'><div class='box box-mc-row'>X</div>Intermédiaire assurant une activité de collecte, de tri, de négoce de déchets en vue de leur valorisation</div>
+            <div class='box-ml-row'>
+              <div class='item-number'>
+                1.A
+              </div>
+              <div class="box-ml-col">
+                <div class="box-ml-row">
+                  <img src="./ressources/bracket.svg" class='bracket'>
+                  <div class="box-ml-col">
+                    <div class="box-ml-row">
+                      Récépissé n° : {{recapData.commun.integrateur_recepisse}}
+                    </div>
+                    <div class="box-ml-row">
+                      Département : {{recapData.commun.integrateur_departement}}
+                    </div>
+                  </div>
+                </div>
+                <div class="box-ml-col">
+                    <div class="box-ml-row">
+                      Type d'activité déclarée en préfecture : {{recapData.commun.integrateur_type_activite_prefecture}}
+                    </div>
+                    <div class="box-ml-row">
+                      Date limite de validité : {{recapData.commun.integrateur_limite_validite_recepisse}}
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section-header box-ml-row">
+          2. Origine des déchets
+        </div>
+        <div class="section-content box-tl-row">
+          <div class="box-item-fill">
+            <div class='box-ml-row'>Nom : {{recapData.commun.nom}}</div>
+            <div class='box-tl-row'><div class='text-nobreak'>Adresse :&nbsp;</div><div>{{recapData.commun.adresse}}</div></div>
+            <div class='box-ml-row'>N° SIRET : {{recapData.commun.SIRET}}</div>
+            <div class='box-ml-row'>Tél : {{recapData.commun.telephone}}</div>
+            <div class='box-ml-row'>Mél ou Fax : {{recapData.commun.email}}</div>
+            <div class='box-ml-row'>Personne à contacter : {{recapData.commun.personne_contact}}</div>
+          </div>
+          <div class="box-item-fill">
+            <div class='box-ml-row'><div class='box box-mc-row'>X</div>Producteur du déchet</div>
+            <div class='box-ml-row'>OU</div>
+            <div class='box-ml-row'><div class='box box-mc-row'>&nbsp;</div><div>Détenteur du déchet&nbsp;<em>(y compris intermédiaire et prestataire de gestion des déchets)</em></div></div>
+          </div>
+        </div>
+        <div class="section-header box-ml-row">
+          3. Flux de déchets pris en charge
+        </div>
+        <div class="section-content box-tl-row">
+          <div class="box-item-fill">
+            <div class='box-ml-row'>
+              <div class='item-number'>
+                3.A
+              </div>
+              <div class='box-ml-row'>Dénomination usuelle des déchets : {{value.nom}}</div>
+            </div>
+            <div class='box-ml-row'>
+              <div class='item-number'>
+                3.B
+              </div>
+              <div class='box-ml-row'><div class='box box-mc-row'>X</div>&nbsp;<div>Triés <em>(un seul des 5 flux principaux de déchet - cocher la case correspondante en 3.D)</em></div></div>
+            </div>
+            <div class='box-ml-row'>
+              <div class='item-number'>
+                3.C
+              </div>
+              <div class='box-ml-row'><div class='box box-mc-row'>&nbsp;</div>&nbsp;<div>En mélange <em>(deux ou plusieurs flux de déchets - cocher les cases correspondantes en 3.D)</em></div></div>
+            </div>
+          </div>
+          <div class="box-item-fill">
+            <div class='box-ml-row'>
+              <div class='item-number'>
+                3.D
+              </div>
+              <div class='box-ml-col'>
+                <div class='waste-lineblock box-ml-row'>
+                  <div class="waste-cell"><img src="./ressources/bracket.svg" class="bracket"></div>
+                  <div class='box-ml-col'>
+                    <div class='waste-line box-ml-row'>
+                      <div class="waste-text">Déchet de papier/carton :</div>
+                      <div class="waste-box"><div class='box box-mc-row' v-if='value.attestation_type == 1'>X</div><div v-else class='box box-mc-row'>&nbsp;</div></div>
+                    </div>
+                    <div class='waste-line box-ml-row'>
+                      <div class="waste-text">Déchet de métal :</div>
+                      <div class="waste-box"><div class='box box-mc-row' v-if='value.attestation_type == 2'>X</div><div v-else class='box box-mc-row'>&nbsp;</div></div>
+                    </div>
+                    <div class='waste-line box-ml-row'>
+                      <div class="waste-text">Déchet de plastique :</div>
+                      <div class="waste-box"><div class='box box-mc-row' v-if='value.attestation_type == 3'>X</div><div v-else class='box box-mc-row'>&nbsp;</div></div>
+                    </div>
+                  </div>
+                </div>
+                <div class='waste-line box-ml-row'>
+                  <div class="waste-cell">&nbsp;</div>
+                  <div class="waste-text">Déchet de verre :</div>
+                  <div class="waste-box"><div class='box box-mc-row' v-if='value.attestation_type == 4'>X</div><div v-else class='box box-mc-row'>&nbsp;</div></div>
+                </div>
+                <div class='waste-line box-ml-row'>
+                  <div class="waste-cell">&nbsp;</div>
+                  <div class="waste-text">Déchet de bois :</div>
+                  <div class="waste-box"><div class='box box-mc-row' v-if='value.attestation_type == 5'>X</div><div v-else class='box box-mc-row'>&nbsp;</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section-header box-ml-row">
+          4. Quantités de déchets prises en charge (exprimées en tonnes)
+        </div>
+        <div class="section-content box-tl-col">
+          <div class="box-qtty-line  box-ml-row">
+            <div class='item-number'>
+              4.A
+            </div>
+            <div class='box-ml-row'>
+              <div class='box-ml-row qtty-type'><div class='box box-mc-row'>X</div>&nbsp;Collectées/réceptionnées</div>
+              <div class="qtty-separator">:</div>
+              <div class="qtty-weight">{{Number(value.poids/1000).toLocaleString('fr-FR')}}t</div>
+              <div class='box box-mc-row'>X</div>&nbsp;Quantités pesées ou&nbsp;<div class='box box-mc-row'></div>&nbsp;Quantités estimées
+            </div>
+          </div>
+          <div class="box-qtty-line  box-ml-row qtty-item-separator">&nbsp;</div>
+          <div class="box-qtty-line  box-ml-row">
+            <div class="box-ml-col">
+              <div class='item-number'>
+                4.B
+              </div>
+              <div class='item-number'>
+                4.C
+              </div>
+            </div>
+            <div class="box-ml-col">
+              <div class='box-ml-row'>
+                <div class='box-ml-row qtty-type aggregate'><div class='box box-mc-row'>X</div>&nbsp;Transférées</div>
+              </div>
+              <div class='box-ml-row'>
+                <div class='box-ml-row qtty-type aggregate'><div class='box box-mc-row'></div>&nbsp;Valorisées</div>
+              </div>
+            </div>
+            <img src="./ressources/bracket.svg" class="reversed-bracket">
+            <div class="qtty-separator">:</div>
+            <div class="qtty-weight">{{Number(value.poids/1000).toLocaleString('fr-FR')}}t</div>
+            <div class='box box-mc-row'>X</div>&nbsp;Quantités pesées ou&nbsp;<div class='box box-mc-row'></div>&nbsp;Quantités estimées
+          </div>
+          <div class="box-qtty-line  box-ml-row qtty-item-separator">&nbsp;</div>
+          <div class="box-qtty-line  box-ml-row">
+            <div class='item-number'>
+              4.D
+            </div>
+            <div class='box-ml-row'>
+              <div class='box-ml-row qtty-type'><div class='box box-mc-row'></div>&nbsp;Refus et freinte</div>
+              <div class="qtty-separator">:</div>
+              <div class="qtty-weight"></div>
+              <div class='box box-mc-row'></div>&nbsp;Quantités pesées ou&nbsp;<div class='box box-mc-row'></div>&nbsp;Quantités estimées
+            </div>
+          </div>
+        </div>
+        <div class="section-header box-ml-row">
+          5. Destination de valorisation finale des déchets
+        </div>
+        <div class="section-content box-tl-col" id='destination'>
+          <em><strong>(Indiquer, par flux, les types d'installations au sein desquelles les déchets ont été valorisés ainsi que leur répartition en pourcentage)</strong></em>
+          <table>
+            <tr>
+              <th>Flux de déchet</th>
+              <th>Type d'installation</th>
+              <th>Répartition</th>
+              <th>Flux de déchet</th>
+              <th>Type d'installation</th>
+              <th>Répartition</th>
+            </tr>
+            <tr>
+              <td rowspan='2' class='rowheader'>Papier/Carton</td>
+              <td><template v-if='value.attestation_type == 1'>Recyclage</template></td>
+              <td><template v-if='value.attestation_type == 1'>100%</template></td>
+              <td rowspan='2' class='rowheader'>Plastique</td>
+              <td><template v-if='value.attestation_type == 3'>Recyclage</template></td>
+              <td><template v-if='value.attestation_type == 3'>100%</template></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td rowspan='2' class='rowheader'>Métal</td>
+              <td><template v-if='value.attestation_type == 2'>Recyclage</template></td>
+              <td><template v-if='value.attestation_type == 2'>100%</template></td>
+              <td rowspan='2' class='rowheader'>Verre</td>
+              <td><template v-if='value.attestation_type == 4'>Recyclage</template></td>
+              <td><template v-if='value.attestation_type == 4'>100%</template></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td rowspan='2' colspan='3'></td>
+              <td rowspan='2' class='rowheader'>Bois</td>
+              <td><template v-if='value.attestation_type == 5'>Recyclage</template></td>
+              <td><template v-if='value.attestation_type == 5'>100%</template></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+        <div class="section-header box-ml-row">
+          6. Date et signature de l'émetteur de l'attestation
+        </div>
+        <div class="section-content box-tl-row">
+          {{currentdate}} - {{recapData.commun.integrateur_personne_contact}}
+        </div>
+      </div>
+    </main>
+    <script>
+      var currentComponentVM = null;
+      var app = new Vue({
+        el: '#app',
+        data: {
+          message: 'Hello Vue!',
+          recapData: data,
+          currentdate: ''
+        },
+        mounted: function(){
+          var vm = this
+          currentComponentVM = vm
+          document.title = 'Attestation de valorisation de déchets prévue par l\'article D.543-284 du code de l\'environnement pour « '+vm.recapData.commun.raison_sociale+' »'
+          var oDate = new Date();
+          var nDate = oDate.getDate();
+          var nMnth = oDate.getMonth()+1;
+          var nYear = oDate.getFullYear();
+          if (nDate/10 < 1 ) nDate = '0'+(nDate+'/')
+          if (nMnth/10 < 1 ) nMnth = '/0'+nMnth+'/'
+          vm.currentdate = nDate+nMnth+nYear
+
+
+//          vm.recapData.id_type_dechet = {6: vm.recapData.id_type_dechet[6]}
+        }
+      })
+    </script>
+  </body>
+</html>

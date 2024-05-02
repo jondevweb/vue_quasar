@@ -1,0 +1,42 @@
+<style>
+    .sticky-header-table {
+        height: 70vh;
+    }
+</style>
+<div id='TOTORO' class="q-pa-md fit column wrap justify-start  content-stretch">
+    <div class='text-h5 text-primary'>Données brutes</div>
+    <q-card class="my-card">
+        <!-- Si besoin : https://quasar.dev/vue-components/table#virtual-scrolling -->
+        <q-card-section>
+            <q-table
+                title=""
+                :rows="collectes.rows"
+                :columns="collectes.columns"
+                style="max-height: 70vh;"
+                class="sticky-header-table"
+                :pagination="collectes.pagination"
+                row-key="id"
+            >
+                <template v-slot:body="props">
+                    <q-tr :props="props">
+                        <q-td key="date" :props="props">
+                            {{ $filters.date.mysqlToDate(props.row.date) }}
+                        </q-td>
+                        <q-td key="nom" :props="props">
+                            {{ props.row.nom }}
+                        </q-td>
+                        <q-td key="dechets" :props="props">
+                            {{ props.row.dechets }}
+                        </q-td>
+                        <q-td key="poids" :props="props">
+                            {{ props.row.poids }}
+                        </q-td>
+                    </q-tr>
+                </template>
+            </q-table>
+        </q-card-section>
+        <q-card-section>
+            <q-btn color='primary' label="Exporter vos données" @click='downloadCsv'></q-btn>
+        </q-card-section>
+      </q-card>
+</div>

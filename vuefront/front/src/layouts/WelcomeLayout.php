@@ -361,7 +361,7 @@
         }
         </script>
     </x-slot>
-    <style>
+   <!--     <style>
     html, body {
         background-color: #f2efef;
     }
@@ -493,7 +493,7 @@
     </style>
     <div id='q-app'>
         <template v-if='true'>
-        <q-layout view="hHh lpR fFf">
+     <q-layout view="hHh lpR fFf">
             <q-header elevated style='height: 4em;'>
                 <q-toolbar class='fit row wrap justify-start items-start content-center' style='padding-left: 0;'>
                     <q-btn
@@ -530,7 +530,7 @@
                         option-label='nom'
                         v-if='visible'
                     >
-                    <!--    <template v-slot:no-option>
+                       <template v-slot:no-option>
                         <q-item>
                             <q-item-section class="text-grey">
                             Aucun site de trouvé
@@ -582,14 +582,16 @@
                                 </q-item>
                             </q-list>
                         </q-btn-dropdown>
-                    </div> -->
+                    </div>
                 </q-toolbar>
             </q-header>
             <q-drawer show-if-above v-model="left" side="left" bordered id='leftpanel' @on-layout='state => panelVisible = state'>
                 <q-scroll-area class="fit">
-                    <q-list bordered class="rounded-borders"><t-expansion-item v-on:selected='selected' :node='leftMenu' :level='0' :show-all='showAll'></t-expansion-item></q-list>
+                    <q-list bordered class="rounded-borders">
+                        <t-expansion-item v-on:selected='selected' :node='leftMenu' :level='0' :show-all='showAll'></t-expansion-item>
+                    </q-list>
                 </q-scroll-area>
-            </q-drawer>
+            </q-drawer> -->
             <q-page-container>
                 <q-dialog v-model="account.dialog" persistent>
                     <ghost-wrapper v-model:one='account.model'>

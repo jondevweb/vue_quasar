@@ -24,6 +24,7 @@ currentComponentConfig = {
       loadClient: function() {
         var vm = this
         post('/api/v1.0/client/client/'+pointcollecte.currentClient, {}, function(data) {
+          console.log(data.result)
           vm.client.model = data.result
           if (vm.client.model.gestionnaire_id)
             vm.loadGestionnaire()

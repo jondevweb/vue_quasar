@@ -161,3 +161,4 @@ Route::prefix('/collecteurs')->group(function () {
     })->where('path', '.+')->middleware(['roleAfterSession:collecteur', 'auth']);
 });
 
+
